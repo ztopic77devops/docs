@@ -57,7 +57,7 @@ GRANT REPLICATION SLAVE ON *.* TO '<replicationUser>'@'%' IDENTIFIED BY '<placeh
 
 ## Test by going onto the replica server and trying to connect to the primary
 ```
-mysql --host=<placeholderPrimaryAddress> --user=repl --password=<placeholderPassword>
+mysql --host=<placeholderPrimaryAddress> --user=<replicationUser> --password=<placeholderPassword>
 ```
 
 ## Verify privileges
