@@ -1,0 +1,5 @@
+- hosts: all
+
+  tasks:
+          - name: specific driver install (checks for connected printer and if it's different than driver installed, install new driver)
+            shell: if [[ $(/usr/sbin/lpinfo -v | grep -w "T20III") ]]; then /usr/sbin/lpadmin -p 'EPSON-TM-T20II' -E -v $(/usr/sbin/lpinfo -v | grep -o "usb.*") -m EPSON/tm-ba-thermal-rastertotmtr-203.ppd -o TmxMaxBandWidth=576 -o Resolution=203x203dpi -o PageSize=RP80x2000 -o TmxPaperCut=CutPerJob -o usb-no-reattach-default=true; fi
