@@ -1,0 +1,14 @@
+---
+- name: get disk serial number
+  become: true
+  remote_user: root
+
+  hosts: all
+
+  tasks:
+   - name: get hostname and serial
+     shell: cat /etc/hostname && hdparm -I /dev/sda | grep "Serial Number" | cut -d ':' -f2 | sed 's/ //g'
+     register: output
+
+   - name: print hostname and serial
+     debug: var=output.stdout_lines

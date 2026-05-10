@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+          - name: check EPSON printer version
+            shell: lpstat -v | grep EPSON
+            register: prnt
+          - debug: var=prnt.stdout_lines
