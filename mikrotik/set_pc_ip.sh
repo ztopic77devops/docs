@@ -5,7 +5,7 @@
 # note: that pc hostname must be <location_number-001> for example 007-001
 # dont forget to create c
 #
-
+```
 :local myemail "email@domain.com";
 :local done false;
 :local ipaddress "$[/ip address get [ find where interface="ether5"] address ]";
@@ -51,3 +51,5 @@ if ($done = true) do={
 		subject="$[/system identity get name] -- new pc connected"
 
 }
+
+```

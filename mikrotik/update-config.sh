@@ -4,7 +4,7 @@
 # file config will be pulled from server to mikrotik, mikrotik CLI commands from config file will be applied
 # and locVRS.txt will be updated with srvVRS.txt content
 # 
-
+```
 :local error false
 
 :if ([:len [file find name="locVRS.txt"]]!=1) do={
@@ -53,3 +53,5 @@
 }
 
 /file remove srvVRS.txt
+
+```
