@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+          - name: list ipp printers
+            shell: ippfind ! --txt printer-type
+            register: space
+          - debug: var=space.stdout_lines
