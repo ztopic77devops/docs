@@ -1,0 +1,38 @@
+- hosts: all
+
+  tasks:
+          - name: copy termagent
+            become: true
+            remote_user: root
+            copy: 
+              src: /home/<user>/Apps/ansible/files/termagent
+              dest: /usr/local/sbin/
+              owner: <user>
+              group: <user>
+              mode: 0755
+          
+          - name: copy termagent.conf
+            copy: 
+              src: /home/<user>/Apps/ansible/files/termagent.conf
+              dest: /etc/supervisor/conf.d/
+
+      
+          - name: copy speedtestsh
+            copy: 
+              src: /home/<user>/Apps/ansible/files/speedtest.sh
+              dest: /home/<user>/
+              owner: <user>
+              group: <user>
+              mode: 0755
+
+          - name: start speedtest
+            command: ../home/<user>/speedtest.sh
+
+          - name: supervisor reread
+            command: supervisorctl reread
+
+          - name: supervisor update
+            command: supervisorctl update  
+
+          - name: restart supervisor termagent
+            command: supervisorctl restart termagent
