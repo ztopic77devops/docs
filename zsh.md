@@ -15,7 +15,7 @@ chsh -s /usr/bin/zsh
 getent passwd <youruser>
 ```
 
-### you should see something like: \<youruser\>:x:0:0:\<youruser\>:/\<youruser\>:/usr/bin/zsh
+#### you should see something like: \<youruser\>:x:0:0:\<youruser\>:/\<youruser\>:/usr/bin/zsh
 
 ## install framework for zsh
 ```
