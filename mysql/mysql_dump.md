@@ -44,12 +44,3 @@ or compressed
 
 bunzip2 < <fileName>.sql.bz2 | mysql -u root -p <targetDbName>
 ```
-
-
-
-
-
-
-
-
-
