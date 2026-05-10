@@ -3,7 +3,7 @@
 # and will set address to 192.168.x.10 where x is location number took from local ip range
 # example: if location 007 have ip range 192.168.7.0/24 this script will will set printer ip to 192.168.7.11
 #
-
+```
 :local myemail "email@domain.com";
 :local done false;
 :local ipaddress "$[/ip address get [ find where interface="ether5"] address ]";
@@ -47,3 +47,5 @@ if ($done = true) do={
 		subject="$[/system identity get name] -- new printer connected"
 
 }
+
+```
