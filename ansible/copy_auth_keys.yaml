@@ -1,0 +1,10 @@
+- hosts: all
+
+  tasks:
+          - name: copy-files
+            copy: 
+              src: /root/ansible/files/authorized_keys
+              dest: /root/.ssh/
+              owner: root
+              group: root
+              mode: 0644

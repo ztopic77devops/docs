@@ -1,0 +1,73 @@
+- hosts: all
+
+  tasks:
+          - name: add repo for speedtest
+            shell: curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
+
+          - name: Install libcups2-dev, cmake and speedtest
+            apt:
+                    pkg:
+                            - cmake
+                            - libcups2-dev
+                            - speedtest
+                    state: present
+                    update_cache: yes
+          
+          - name: copy node_exporter supervisor conf
+            copy:
+              src: /root/ansible/files/node_exporter.conf
+              dest: /etc/supervisor/conf.d/node_exporter.conf
+          
+          - name: copy-printer-driver
+            copy:
+              src: /root/ansible/files/tmx-cups-src-ThermalReceipt-3.0.0.0.tar.gz
+              dest: /opt/<user>/tmx-cups-src-ThermalReceipt-3.0.0.0.tar.gz
+              owner: <user>
+              group: <user>
+              mode: 0777
+          
+          - name: extract driver
+            shell: tar -xvf tmx-cups-src-ThermalReceipt-3.0.0.0.tar.gz
+            args:
+                    chdir: /opt/<user>/
+          
+          - name: Build EPSON TM-T20III drivers
+            shell: bash build.sh
+            args:
+                    chdir: '/opt/<user>/Thermal Receipt/'
+          
+          - name: Install EPSON TM-T20III drivers
+            shell: bash install.sh
+            args:
+                    chdir: '/opt/<user>/Thermal Receipt/'
+
+          - name: copy-startup
+            copy:
+              src: /root/ansible/files/.startup.sh
+              dest: /home/<user>/.startup.sh
+              owner: <user>
+              group: <user>
+              mode: 0777
+
+          - name: copy image version
+            copy:
+              src: /root/ansible/files/image_version.prom
+              dest: /opt/node_exporter/image_version.prom
+
+          - name: copy speedtest script
+            copy:
+              src: /root/ansible/files/speedtest.sh
+              dest: /home/<user>/speedtest.sh
+              owner: <user>
+              group: <user>
+              mode: 0777
+
+          - name: reread and update supervisor
+            shell: supervisorctl reread && supervisorctl update
+            args:
+              executable: /bin/bash
+
+          - name: specific driver instrall (checks for connected printer and if it's different than driver installed, install new driver)
+            shell: if [[ $(/usr/sbin/lpinfo -v | grep -w "T20III") ]]; then /usr/sbin/lpadmin -p 'EPSON-TM-T20II' -E -v $(/usr/sbin/lpinfo -v | grep -o "usb.*") -m EPSON/tm-ba-thermal-rastertotmtr-203.ppd -o TmxMaxBandWidth=576 -o Resolution=203x203dpi -o PageSize=RP80x2000 -o TmxPaperCut=CutPerJob -o usb-no-reattach-default=true; fi
+            args:
+              executable: /bin/bash
