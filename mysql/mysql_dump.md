@@ -9,7 +9,7 @@
 ```
 mysql -u root -p <database_name> < db_name.sql
 
-### or commpresed
+### or compressed
 
 bunzip2 < db_name.sql.bz2 | mysql -u root target_db_name
 ```
