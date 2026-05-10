@@ -1,5 +1,5 @@
 #
-# this mikrotik script will find new printer connected to mikrotik
+# this mikrotik script will find new kyocera printer connected to mikrotik
 # and will set address to 192.168.x.10 where x is location number took from local ip range
 # example: if location 007 have ip range 192.168.7.0/24 this script will will set printer ip to 192.168.7.11
 #
