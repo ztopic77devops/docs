@@ -1,7 +1,7 @@
 #
 # this mikrotik script will find new PC connected to mikrotik
 # and will set address to 192.168.x.10 where x is location number took from local ip range
-# example: if location 007 have ip range 192.168.7.0/24 this script will will set PC ip to 192.168.7.11
+# example: if location 007 have ip range 192.168.7.0/24 this script will set PC ip to 192.168.7.11
 # note: that pc hostname must be <location_number-001> for example 007-001
 # dont forget to create c
 #
