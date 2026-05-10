@@ -27,7 +27,9 @@ show grants for <username>;
 ```
 GRANT ALL PRIVILEGES ON *.* TO '<placeholderUsername>'@'%';
 
-Command grants all privileges on all databases and any tables within those databases. In case you want to grant privileges to a all tables in specific database use “<databaseName>.*” instead of “*.*”. If you want to grant privileges on one specific table then use “<databaseName>.<>” instead of “*.*”.
+This command grants all privileges on all databases and all tables within those databases.
+If you want to grant privileges on all tables in a specific database, use <databaseName>.* instead of *.*.
+If you want to grant privileges on a specific table, use <databaseName>.<tableName> instead.
 ```
 
 ## Grant all privileges to single database for user
