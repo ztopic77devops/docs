@@ -1,7 +1,8 @@
-#### this script will keep your laptop unlocked on your local network
-#### and lock it after 2 minutes on every other network
+##### this script will keep your laptop unlocked on your local network
+##### and lock it after 2 minutes on every other network
 
-## create a script with content from sh file
+
+## create a script with content from autolock_desktop.sh file
 ```
 vim /home/<user>/<path-to>/autolock_desktop.sh
 ```
