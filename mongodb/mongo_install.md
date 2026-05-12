@@ -35,7 +35,7 @@ systemctl enable mongod
 # Single instance setup
 ## Enter mongo and create a root user
 ```
-mongosh
+mongosh admin -u root -p '<password>'
 
 use admin
 db.createUser({ user: 'root', pwd: passwordPrompt(), roles: [{ role: "root", db: "admin" }]})

@@ -265,20 +265,6 @@ kubectl -n <namespace> scale deployment flex-offer-internal --replicas=1
 
 ---
 
-# Redis Version Info
-
-## Enter Redis Container
-
-```bash
-kubectl -n <namespace> exec -it redis-master-5d6cc477-fjcf2 -- bash
-```
-
-
-
-
-
----
-
 # Useful Additional Commands
 
 ## Watch Resources Continuously
