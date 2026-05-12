@@ -1,8 +1,8 @@
-# Single server replica set setup
+# Multi server replica set setup
 
 ## Enter mongo and create a root user
 ```
-mongosh
+mongosh admin -u root -p '<password>'
 
 use admin
 db.createUser({ user: 'root', pwd: passwordPrompt(), roles: [{ role: "root", db: "admin" }]})
@@ -52,7 +52,7 @@ cloud:
 ```
 openssl rand -base64 756 > /var/lib/mongodb/keyfile
 cat /var/lib/mongodb/keyfile
-#copy and paste onto the other mongo members
+#copy keyfile onto the other mongo members
 ```
 
 ## Assign the mongodb user as owner of the keyfiles and add assing new permissions to the keyfiles on each mongo replica set member
@@ -67,8 +67,6 @@ systemctl restart mongod
 
 ## Enter mongosh and navigate to the admin database, then execute the replica set initiation command on the first replica set member
 ```
-# mongo, if version 4
-# mongosh, if version 6
 
 mongosh admin -u root -p '<password>'
 
@@ -86,7 +84,7 @@ rs.initiate({
 
 ## Check replica set status
 ```
-mongosh
+mongosh admin -u root -p '<password>'
 
 rs.status()
 ```

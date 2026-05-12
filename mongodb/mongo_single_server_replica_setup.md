@@ -2,7 +2,7 @@
 
 ## Enter mongo and create a root user
 ```
-mongosh
+mongosh admin -u root -p '<password>'
 
 use admin
 db.createUser({ user: 'root', pwd: passwordPrompt(), roles: [{ role: "root", db: "admin" }]})
@@ -161,7 +161,7 @@ rs.initiate({
 
 ## Check status of the replica set
 ```
-mongosh
+mongosh admin -u root -p '<password>'
 
 rs.status()
 ```
