@@ -35,7 +35,7 @@ Section "Screen"
 EndSection
 ```
 
-## Make sure there are no running xservers. To close an existing xserver, stop the DM using it. Optionally, disable it.
+## Make sure there are no running xservers. To close an existing xserver, stop the GDM using it. Optionally, disable it.
 ```
 systemctl stop gdm
 systemctl disable gdm
