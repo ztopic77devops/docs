@@ -69,28 +69,3 @@ ExecStart=/home/ubuntu/.startDummyDisplay.sh
 [Install]
 WantedBy=multi-user.target
 ```
-
-## Edit /lib/systemd/system/supervisor.service to add dependency on dummyDisplay.service in “After=” line
-```
-[Unit]
-Description=Supervisor process control system for UNIX
-Documentation=http://supervisord.org
-After=network.target dummyDisplay.service
-
-[Service]
-ExecStart=/usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
-ExecStop=/usr/bin/supervisorctl $OPTIONS shutdown
-ExecReload=/usr/bin/supervisorctl -c /etc/supervisor/supervisord.conf $OPTIONS reload
-KillMode=process
-Restart=on-failure
-RestartSec=50s
-
-[Install]
-WantedBy=multi-user.target
-``
-
-## Reload daemons and enable the service through systemctl
-```
-systemctl daemon-reload
-systemctl enable dummyDisplay
-```
